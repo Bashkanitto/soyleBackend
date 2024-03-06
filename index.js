@@ -2,12 +2,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const wordRoute = require('./routes/words');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const registerRoute = require('./routes/register');
 const userRoute = require('./routes/users');
+const examRoute = require('./routes/exam');
+const resultRoute = require('./routes/result');
+const aiRoute = require('./routes/ai');
 
 const options = {
   definition: {
@@ -30,8 +33,11 @@ app.use(express.json());
 app.use(morgan('common'));
 app.use(cookieParser());
 app.use(cors());
-app.use('/words', wordRoute);
+app.use('/register', registerRoute);
 app.use('/users', userRoute);
+app.use('/exams', examRoute);
+app.use('/results', resultRoute);
+app.use('/ai', aiRoute);
 
 const DB_URL =
   'mongodb+srv://nurrsserkul:nurrs123@cluster0.yfqy8rx.mongodb.net/?retryWrites=true&w=majority';
